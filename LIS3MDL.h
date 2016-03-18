@@ -16,7 +16,7 @@ public:
     LIS3MDL(const char * i2cDeviceName);
 
     // gyro angular velocity readings
-    int g[3];
+    int m[3];
 
     void enable(void);
 

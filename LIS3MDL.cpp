@@ -1,6 +1,7 @@
 #include "LIS3MDL.h"
 #include <stdexcept>
 
+// Magnetometer
 
 LIS3MDL::LIS3MDL(const char * i2cDeviceName) : i2c(i2cDeviceName)
 {
@@ -51,7 +52,7 @@ void LIS3MDL::read()
     uint8_t block[6];
     i2c.readBlock(0x80 | _LIS3MDL_REG_OUT_X_L, sizeof(block), block);
 
-    g[0] = (int16_t)(block[1] << 8 | block[0]);
-    g[1] = (int16_t)(block[3] << 8 | block[2]);
-    g[2] = (int16_t)(block[5] << 8 | block[4]);
+    m[0] = (int16_t)(block[1] << 8 | block[0]);
+    m[1] = (int16_t)(block[3] << 8 | block[2]);
+    m[2] = (int16_t)(block[5] << 8 | block[4]);
 }

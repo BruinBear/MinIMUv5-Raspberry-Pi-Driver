@@ -6,25 +6,11 @@
 
 // register addresses
 
-#define LSM6DS33_GYRO 0x22
-#define LSM6DS33_XL 0x28
-
-#define _LSM6DS33_REG_WHO_AM_I 0x0f
-#define _LSM6DS33_VAL_WHO_AM_I 0x69
-#define _LSM6DS33_REG_CTRL1_XL 0x10
-#define _LSM6DS33_REG_CTRL2_G 0x11
-#define _LIS3MDL_REG_WHO_AM_I 0x0f
-#define _LIS3MDL_VAL_WHO_AM_I 0x3d
-#define _LIS3MDL_REG_CTRL_REG1 0x20
-#define _LIS3MDL_REG_CTRL_REG2 0x21
-#define _LIS3MDL_REG_CTRL_REG3 0x22
-#define _LIS3MDL_REG_OUT_X_L 0x28
-
 class LSM6DS33
 {
  public:
-    int a[3];  // accelerometer readings
-    int m[3];  // magnetometer readings
+    int g[3];  // gyro readings
+    int a[3];  // accelerator readings
 
     LSM6DS33(const char * i2cDeviceName);
 
@@ -32,11 +18,11 @@ class LSM6DS33
 
     void writeAccReg(uint8_t reg, uint8_t value);
     uint8_t readAccReg(uint8_t reg);
-    void writeMagReg(uint8_t reg, uint8_t value);
-    uint8_t readMagReg(uint8_t reg);
+    void writeGyroReg(uint8_t reg, uint8_t value);
+    uint8_t readGyroReg(uint8_t reg);
 
     void readAcc(void);
-    void readMag(void);
+    void readGyro(void);
     void read(void);
 
     enum regAddr
@@ -111,7 +97,7 @@ class LSM6DS33
       MD2_CFG           = 0x5F,
     };
 private:
-    I2CBus i2c_mag, i2c_acc;
+    I2CBus i2c_gyro, i2c_acc;
     enum class Device {
         LSM6DS33
     } device;
